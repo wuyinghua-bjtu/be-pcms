@@ -1,6 +1,6 @@
 package com.bepcms.pcms.Entity;
 
-public class StudentList {
+public class StudentList extends UserList {
     private String studentid;
 
     private String studentname;

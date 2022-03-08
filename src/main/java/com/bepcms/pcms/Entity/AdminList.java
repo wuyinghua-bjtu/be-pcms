@@ -1,6 +1,6 @@
 package com.bepcms.pcms.Entity;
 
-public class AdminList {
+public class AdminList extends UserList{
     private String adminid;
 
     private String adminname;

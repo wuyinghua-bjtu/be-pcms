@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service("StudentListService")
@@ -36,9 +37,15 @@ public class StudentListServiceImpl implements StudentListService {
         return studentListMapper.selectAll();
     }
 
-    @Override
-    public List<StudentList> getStudentListByName(String studentName) {
+    public List<StudentList> getStudentListByCondition(Map map) {
         StudentListExample studentListExample = new StudentListExample();
+        StudentListExample.Criteria criteria = studentListExample.createCriteria();
+        if (map.containsKey("id") && map.get("id").toString() != "") {
+            criteria.andStudentidEqualTo(map.get("id").toString());
+        }
+        if (map.containsKey("name") && map.get("name").toString() != "") {
+            criteria.andStudentnameEqualTo(map.get("name").toString());
+        }
         return studentListMapper.selectByExample(studentListExample);
     }
 }

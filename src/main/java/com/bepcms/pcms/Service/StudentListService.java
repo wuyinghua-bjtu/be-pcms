@@ -3,6 +3,7 @@ package com.bepcms.pcms.Service;
 import com.bepcms.pcms.Entity.StudentList;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentListService {
 
@@ -12,5 +13,5 @@ public interface StudentListService {
 
     public List<StudentList> getStudentListAll();
 
-    public List<StudentList> getStudentListByName(String studentName);
+    public List<StudentList> getStudentListByCondition(Map map);
 }

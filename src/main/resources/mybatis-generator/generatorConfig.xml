@@ -37,11 +37,11 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>-->
 
-        <table tableName="student_account" domainObjectName="StudentAccount">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
-        <table tableName="student_list" domainObjectName="StudentList" />
+<!--        <table tableName="student_account" domainObjectName="StudentAccount">-->
+<!--            &lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+<!--                                replaceString=""/>&ndash;&gt;-->
+<!--        </table>-->
+<!--        <table tableName="student_list" domainObjectName="StudentList" />-->
         <table tableName="course_list" domainObjectName="CourseList" />
         <table tableName="admin_list" domainObjectName="AdminList" />
     </context>
