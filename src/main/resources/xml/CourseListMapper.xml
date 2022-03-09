@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bepcms.pcms.Dao.CourseListMapper" >
-  <resultMap id="BaseResultMap" type="com.bepcms.pcms.Entity.CourseList" >
-    <id column="courseId" property="courseid" jdbcType="CHAR" />
-    <result column="courseName" property="coursename" jdbcType="CHAR" />
-    <result column="credits" property="credits" jdbcType="INTEGER" />
-    <result column="period" property="period" jdbcType="INTEGER" />
-    <result column="college" property="college" jdbcType="CHAR" />
-    <result column="major" property="major" jdbcType="CHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bepcms.pcms.Dao.CourseListMapper">
+  <resultMap id="BaseResultMap" type="com.bepcms.pcms.Entity.CourseList">
+    <id column="courseId" jdbcType="CHAR" property="courseid" />
+    <result column="courseName" jdbcType="CHAR" property="coursename" />
+    <result column="credits" jdbcType="INTEGER" property="credits" />
+    <result column="period" jdbcType="INTEGER" property="period" />
+    <result column="college" jdbcType="CHAR" property="college" />
+    <result column="major" jdbcType="CHAR" property="major" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -38,25 +38,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -67,121 +67,121 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     courseId, courseName, credits, period, college, major
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bepcms.pcms.Entity.CourseListExample" >
+  <select id="selectByExample" parameterType="com.bepcms.pcms.Entity.CourseListExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from course_list
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from course_list
     where courseId = #{courseid,jdbcType=CHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from course_list
     where courseId = #{courseid,jdbcType=CHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bepcms.pcms.Entity.CourseListExample" >
+  <delete id="deleteByExample" parameterType="com.bepcms.pcms.Entity.CourseListExample">
     delete from course_list
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bepcms.pcms.Entity.CourseList" >
+  <insert id="insert" parameterType="com.bepcms.pcms.Entity.CourseList">
     insert into course_list (courseId, courseName, credits, 
       period, college, major)
     values (#{courseid,jdbcType=CHAR}, #{coursename,jdbcType=CHAR}, #{credits,jdbcType=INTEGER}, 
       #{period,jdbcType=INTEGER}, #{college,jdbcType=CHAR}, #{major,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bepcms.pcms.Entity.CourseList" >
+  <insert id="insertSelective" parameterType="com.bepcms.pcms.Entity.CourseList">
     insert into course_list
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="courseid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
         courseId,
       </if>
-      <if test="coursename != null" >
+      <if test="coursename != null">
         courseName,
       </if>
-      <if test="credits != null" >
+      <if test="credits != null">
         credits,
       </if>
-      <if test="period != null" >
+      <if test="period != null">
         period,
       </if>
-      <if test="college != null" >
+      <if test="college != null">
         college,
       </if>
-      <if test="major != null" >
+      <if test="major != null">
         major,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="courseid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
         #{courseid,jdbcType=CHAR},
       </if>
-      <if test="coursename != null" >
+      <if test="coursename != null">
         #{coursename,jdbcType=CHAR},
       </if>
-      <if test="credits != null" >
+      <if test="credits != null">
         #{credits,jdbcType=INTEGER},
       </if>
-      <if test="period != null" >
+      <if test="period != null">
         #{period,jdbcType=INTEGER},
       </if>
-      <if test="college != null" >
+      <if test="college != null">
         #{college,jdbcType=CHAR},
       </if>
-      <if test="major != null" >
+      <if test="major != null">
         #{major,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bepcms.pcms.Entity.CourseListExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.bepcms.pcms.Entity.CourseListExample" resultType="java.lang.Integer">
     select count(*) from course_list
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update course_list
-    <set >
-      <if test="record.courseid != null" >
+    <set>
+      <if test="record.courseid != null">
         courseId = #{record.courseid,jdbcType=CHAR},
       </if>
-      <if test="record.coursename != null" >
+      <if test="record.coursename != null">
         courseName = #{record.coursename,jdbcType=CHAR},
       </if>
-      <if test="record.credits != null" >
+      <if test="record.credits != null">
         credits = #{record.credits,jdbcType=INTEGER},
       </if>
-      <if test="record.period != null" >
+      <if test="record.period != null">
         period = #{record.period,jdbcType=INTEGER},
       </if>
-      <if test="record.college != null" >
+      <if test="record.college != null">
         college = #{record.college,jdbcType=CHAR},
       </if>
-      <if test="record.major != null" >
+      <if test="record.major != null">
         major = #{record.major,jdbcType=CHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update course_list
     set courseId = #{record.courseid,jdbcType=CHAR},
       courseName = #{record.coursename,jdbcType=CHAR},
@@ -189,32 +189,32 @@
       period = #{record.period,jdbcType=INTEGER},
       college = #{record.college,jdbcType=CHAR},
       major = #{record.major,jdbcType=CHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bepcms.pcms.Entity.CourseList" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.bepcms.pcms.Entity.CourseList">
     update course_list
-    <set >
-      <if test="coursename != null" >
+    <set>
+      <if test="coursename != null">
         courseName = #{coursename,jdbcType=CHAR},
       </if>
-      <if test="credits != null" >
+      <if test="credits != null">
         credits = #{credits,jdbcType=INTEGER},
       </if>
-      <if test="period != null" >
+      <if test="period != null">
         period = #{period,jdbcType=INTEGER},
       </if>
-      <if test="college != null" >
+      <if test="college != null">
         college = #{college,jdbcType=CHAR},
       </if>
-      <if test="major != null" >
+      <if test="major != null">
         major = #{major,jdbcType=CHAR},
       </if>
     </set>
     where courseId = #{courseid,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bepcms.pcms.Entity.CourseList" >
+  <update id="updateByPrimaryKey" parameterType="com.bepcms.pcms.Entity.CourseList">
     update course_list
     set courseName = #{coursename,jdbcType=CHAR},
       credits = #{credits,jdbcType=INTEGER},

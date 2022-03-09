@@ -25,4 +25,8 @@ public class ResultDto<T> {
         return new ResultDto<>(result, true, null);
     }
 
+    public ResultDto error(String errorMsg) {
+        return new ResultDto(null, false, errorMsg);
+    }
+
 }

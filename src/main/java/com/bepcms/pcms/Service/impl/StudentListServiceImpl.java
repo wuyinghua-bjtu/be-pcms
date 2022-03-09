@@ -22,6 +22,18 @@ public class StudentListServiceImpl implements StudentListService {
         return studentListMapper.selectByPrimaryKey(studentId);
     }
 
+    @Override
+    public boolean deleteStudent(String id) {
+        boolean res = false;
+        try {
+            studentListMapper.deleteByPrimaryKey(id);
+            res = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
     public boolean addStudent(StudentList record) {
         boolean res = false;
         try {

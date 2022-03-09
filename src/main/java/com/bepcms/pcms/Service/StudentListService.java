@@ -14,4 +14,6 @@ public interface StudentListService {
     public List<StudentList> getStudentListAll();
 
     public List<StudentList> getStudentListByCondition(Map map);
+
+    public boolean deleteStudent(String id);
 }

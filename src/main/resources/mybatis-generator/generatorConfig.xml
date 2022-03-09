@@ -42,7 +42,9 @@
 <!--                                replaceString=""/>&ndash;&gt;-->
 <!--        </table>-->
 <!--        <table tableName="student_list" domainObjectName="StudentList" />-->
+<!--        <table tableName="course_list" domainObjectName="CourseList" />-->
+<!--        <table tableName="admin_list" domainObjectName="AdminList" />-->
+<!--        <table tableName="teacher_list" domainObjectName="TeacherList" />-->
         <table tableName="course_list" domainObjectName="CourseList" />
-        <table tableName="admin_list" domainObjectName="AdminList" />
     </context>
 </generatorConfiguration>

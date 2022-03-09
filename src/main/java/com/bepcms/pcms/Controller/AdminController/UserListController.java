@@ -1,11 +1,9 @@
 package com.bepcms.pcms.Controller.AdminController;
 
-import com.bepcms.pcms.Entity.AdminList;
-import com.bepcms.pcms.Entity.StudentList;
-import com.bepcms.pcms.Entity.StudentListExample;
-import com.bepcms.pcms.Entity.UserList;
+import com.bepcms.pcms.Entity.*;
 import com.bepcms.pcms.Service.AdminListService;
 import com.bepcms.pcms.Service.StudentListService;
+import com.bepcms.pcms.Service.TeacherListService;
 import com.bepcms.pcms.model.dto.ResultDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,7 @@ import java.util.Map;
 
 @Controller
 @Slf4j
-public class UserListController<T extends UserList> {
+public class UserListController<T> {
 
     @Resource
     private StudentListService studentListService;
@@ -31,26 +29,34 @@ public class UserListController<T extends UserList> {
     @Resource
     private AdminListService adminListService;
 
+    @Resource
+    private TeacherListService teacherListService;
+
     @PostMapping("/admin/user/list")
     @ResponseBody
     public ResultDto consoleQueryList(@RequestBody Map map, HttpServletRequest request, HttpServletResponse response) {
         log.info(map.get("type").toString());
         ResultDto res = new ResultDto();
-        List<StudentList> studentLists = null;
-        List<AdminList> adminLists = null;
         List<T> lists = null;
         if (map.get("type").toString().equals("student")) {
             log.info("调用查询学生列表接口");
-            studentLists =  queryStudentList(map, request, response);
+            lists = (List<T>) queryStudentList(map, request, response);
         }
         else if (map.get("type").toString().equals("admin")) {
-            adminLists = queryAdminList(map, request, response);
+            lists = (List<T>) queryAdminList(map, request, response);
         }
-        if (studentLists.size() > 0) {
-            Map module = new HashMap();
-            module.put("list", studentLists);
-            module.put("total", studentLists.size());
-            return new ResultDto().ok(module);
+        else if (map.get("type").toString().equals("teacher")) {
+            lists = (List<T>) queryTeacherList(map, request, response);
+        }
+        if (lists != null) {
+            if (lists.size() > 0) {
+                Map module = new HashMap();
+                module.put("list", lists);
+                module.put("total", lists.size());
+                return new ResultDto().ok(module);
+            } else {
+                return new ResultDto().error("未查询到用户");
+            }
         }
         return res;
     }
@@ -61,6 +67,34 @@ public class UserListController<T extends UserList> {
         ResultDto res = new ResultDto();
         if (map.get("type").toString().equals("student")) {
             if (addStudentList(map, request, response)) {
+                return new ResultDto().ok(null);
+            }
+        } else if (map.get("type").toString().equals("admin")) {
+            if (addAdminList(map, request, response)) {
+                return new ResultDto().ok(null);
+            }
+        } else if (map.get("type").toString().equals("teacher")) {
+            if (addTeacherList(map, request, response)) {
+                return new ResultDto().ok(null);
+            }
+        }
+        return res;
+    }
+
+    @PostMapping("/admin/deleteUser")
+    @ResponseBody
+    public ResultDto consoleDeleteUser(@RequestBody Map map) {
+        ResultDto res = new ResultDto();
+        if (map.get("type").toString().equals("student")) {
+            if (deleteStudentList(map)) {
+                return new ResultDto().ok(null);
+            }
+        } else if (map.get("type").toString().equals("admin")) {
+            if (deleteAdminList(map)) {
+                return new ResultDto().ok(null);
+            }
+        } else if (map.get("type").toString().equals("teacher")) {
+            if (deleteTeacherList(map)) {
                 return new ResultDto().ok(null);
             }
         }
@@ -76,6 +110,12 @@ public class UserListController<T extends UserList> {
     public List<AdminList> queryAdminList(Map map, HttpServletRequest request, HttpServletResponse response) {
         return this.adminListService.getAdminListByCondition(map);
     }
+
+//    查询教师列表
+    public List<TeacherList> queryTeacherList(Map map, HttpServletRequest request, HttpServletResponse response) {
+        return this.teacherListService.getTeacherListByCondition(map);
+    }
+
 //    添加学生用户
     public boolean addStudentList(Map map, HttpServletRequest request, HttpServletResponse response) {
         StudentList record = new StudentList();
@@ -86,5 +126,38 @@ public class UserListController<T extends UserList> {
         record.setCollege(map.get("college").toString());
         record.setMajor(map.get("major").toString());
         return this.studentListService.addStudent(record);
+    }
+
+//    添加管理员用户
+    public boolean addAdminList(Map map, HttpServletRequest request, HttpServletResponse response) {
+        AdminList record = new AdminList();
+        record.setAdminid(map.get("id").toString());
+        record.setAdminname(map.get("name").toString());
+        return this.adminListService.addAdmin(record);
+    }
+
+//    添加教师
+    public boolean addTeacherList(Map map, HttpServletRequest request, HttpServletResponse response) {
+        TeacherList record = new TeacherList();
+        record.setTeacherid(map.get("id").toString());
+        record.setTeachername(map.get("name").toString());
+        record.setTeachersex(map.get("age").toString());
+        record.setTeacherage(Integer.parseInt(map.get("age").toString()));
+        return this.teacherListService.addTeacher(record);
+    }
+
+//    删除学生用户
+    public boolean deleteStudentList(Map map) {
+        return this.studentListService.deleteStudent(map.get("id").toString());
+    }
+
+//  删除管理员用户
+    public boolean deleteAdminList(Map map) {
+        return this.adminListService.deleteAdmin(map.get("id").toString());
+    }
+
+//  删除教师用户
+    public boolean deleteTeacherList(Map map) {
+        return this.teacherListService.deleteTeacher(map.get("id").toString());
     }
 }

@@ -28,4 +28,27 @@ public class AdminListServiceImpl implements AdminListService {
         return adminListMapper.selectByExample(adminListExample);
     }
 
+    @Override
+    public boolean deleteAdmin(String id) {
+        boolean res = false;
+        try {
+            adminListMapper.deleteByPrimaryKey(id);
+            res = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;    }
+
+    @Override
+    public boolean addAdmin(AdminList record) {
+        boolean res = false;
+        try {
+            adminListMapper.insertSelective(record);
+            res = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
 }

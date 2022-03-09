@@ -9,4 +9,7 @@ public interface AdminListService {
 
     public List<AdminList> getAdminListByCondition(Map map);
 
+    public boolean addAdmin(AdminList record);
+
+    public boolean deleteAdmin(String id);
 }
