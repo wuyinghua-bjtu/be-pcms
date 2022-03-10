@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bepcms.pcms.Dao.StudentCourseMapper" >
+  <resultMap id="BaseResultMap" type="com.bepcms.pcms.Entity.StudentCourse" >
+    <id column="scid" property="scid" jdbcType="INTEGER" />
+    <result column="studentid" property="studentid" jdbcType="CHAR" />
+    <result column="courseId" property="courseid" jdbcType="CHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="teachername" property="teachername" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    scid, studentid, courseId, score, teachername
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bepcms.pcms.Entity.StudentCourseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_course
+    where scid = #{scid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_course
+    where scid = #{scid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bepcms.pcms.Entity.StudentCourseExample" >
+    delete from student_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bepcms.pcms.Entity.StudentCourse" >
+    insert into student_course (scid, studentid, courseId, 
+      score, teachername)
+    values (#{scid,jdbcType=INTEGER}, #{studentid,jdbcType=CHAR}, #{courseid,jdbcType=CHAR}, 
+      #{score,jdbcType=INTEGER}, #{teachername,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bepcms.pcms.Entity.StudentCourse" >
+    insert into student_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scid != null" >
+        scid,
+      </if>
+      <if test="studentid != null" >
+        studentid,
+      </if>
+      <if test="courseid != null" >
+        courseId,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="teachername != null" >
+        teachername,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scid != null" >
+        #{scid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null" >
+        #{studentid,jdbcType=CHAR},
+      </if>
+      <if test="courseid != null" >
+        #{courseid,jdbcType=CHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="teachername != null" >
+        #{teachername,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bepcms.pcms.Entity.StudentCourseExample" resultType="java.lang.Integer" >
+    select count(*) from student_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_course
+    <set >
+      <if test="record.scid != null" >
+        scid = #{record.scid,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentid != null" >
+        studentid = #{record.studentid,jdbcType=CHAR},
+      </if>
+      <if test="record.courseid != null" >
+        courseId = #{record.courseid,jdbcType=CHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.teachername != null" >
+        teachername = #{record.teachername,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_course
+    set scid = #{record.scid,jdbcType=INTEGER},
+      studentid = #{record.studentid,jdbcType=CHAR},
+      courseId = #{record.courseid,jdbcType=CHAR},
+      score = #{record.score,jdbcType=INTEGER},
+      teachername = #{record.teachername,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bepcms.pcms.Entity.StudentCourse" >
+    update student_course
+    <set >
+      <if test="studentid != null" >
+        studentid = #{studentid,jdbcType=CHAR},
+      </if>
+      <if test="courseid != null" >
+        courseId = #{courseid,jdbcType=CHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="teachername != null" >
+        teachername = #{teachername,jdbcType=CHAR},
+      </if>
+    </set>
+    where scid = #{scid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bepcms.pcms.Entity.StudentCourse" >
+    update student_course
+    set studentid = #{studentid,jdbcType=CHAR},
+      courseId = #{courseid,jdbcType=CHAR},
+      score = #{score,jdbcType=INTEGER},
+      teachername = #{teachername,jdbcType=CHAR}
+    where scid = #{scid,jdbcType=INTEGER}
+  </update>
+  <select id="getCourseListByStudentid" parameterType="com.bepcms.pcms.Entity.StudentList" resultType="com.bepcms.pcms.Entity.CourseList">
+    select * from course_list
+    where courseId = any (select courseId from student_course where studentid = #{id,jdbcType=CHAR})
+  </select>
+</mapper>

@@ -45,6 +45,9 @@
 <!--        <table tableName="course_list" domainObjectName="CourseList" />-->
 <!--        <table tableName="admin_list" domainObjectName="AdminList" />-->
 <!--        <table tableName="teacher_list" domainObjectName="TeacherList" />-->
-        <table tableName="course_list" domainObjectName="CourseList" />
+<!--        <table tableName="course_list" domainObjectName="CourseList" />-->
+        <table tableName="student_course" domainObjectName="StudentCourse" />
+<!--        <table tableName="teacher_course" domainObjectName="TeacherCourse" />-->
+
     </context>
 </generatorConfiguration>
