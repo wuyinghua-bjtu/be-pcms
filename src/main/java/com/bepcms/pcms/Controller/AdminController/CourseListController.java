@@ -38,4 +38,40 @@ public class CourseListController {
         }
     }
 
+    @PostMapping("/admin/addCourse")
+    @ResponseBody
+    public ResultDto consoleAddCourse(@RequestBody Map map) {
+        log.info("添加课程");
+        if (addCourseList(map)) {
+            return new ResultDto().ok(null);
+        } else {
+            return new ResultDto().error("添加失败");
+        }
+    }
+
+    @PostMapping("/admin/deleteCourse")
+    @ResponseBody
+    public ResultDto consoleDeleteCourse(@RequestBody Map map) {
+        if (this.coureseListService.deleteCourse(map.get("id").toString())) {
+            return new ResultDto().ok(null);
+        } else {
+            return new ResultDto().error("删除失败");
+        }
+    }
+
+//    添加课程
+    private boolean addCourseList(Map map) {
+        CourseList record = new CourseList();
+
+        record.setCourseid(map.get("id").toString());
+        record.setCoursename(map.get("name").toString());
+        record.setCollege(map.get("college").toString());
+        record.setCredits(Integer.parseInt(map.get("credits").toString()));
+        record.setPeriod(Integer.parseInt(map.get("period").toString()));
+        record.setMajor(map.get("major").toString());
+
+        return this.coureseListService.addCourse(record);
+    }
+
+
 }
