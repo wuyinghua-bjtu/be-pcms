@@ -4,6 +4,7 @@ package com.bepcms.pcms.Controller.AdminController;
 import com.bepcms.pcms.Entity.CourseList;
 import com.bepcms.pcms.Service.CoureseListService;
 import com.bepcms.pcms.model.dto.ResultDto;
+import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,11 +28,12 @@ public class CourseListController {
     public ResultDto consoleQueryList(@RequestBody Map map) {
         ResultDto res = new ResultDto();
         List<CourseList> courseListList = null;
+        PageHelper.startPage(Integer.parseInt(map.get("pageNum").toString()), Integer.parseInt(map.get("pageSize").toString()));
         courseListList = this.coureseListService.getCourseListByCondition(map);
         if (courseListList != null && courseListList.size() > 0) {
             Map module = new HashMap();
             module.put("list", courseListList);
-            module.put("total", courseListList.size());
+            module.put("total", this.coureseListService.getCount(map));
             return new ResultDto().ok(module);
         } else {
             return new ResultDto().error("未查询到用户");

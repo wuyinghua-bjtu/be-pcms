@@ -23,6 +23,19 @@ public class StudentListServiceImpl implements StudentListService {
     }
 
     @Override
+    public int getCount(Map map) {
+        StudentListExample studentListExample = new StudentListExample();
+        StudentListExample.Criteria criteria = studentListExample.createCriteria();
+        if (map.containsKey("id") && map.get("id").toString() != "") {
+            criteria.andStudentidEqualTo(map.get("id").toString());
+        }
+        if (map.containsKey("name") && map.get("name").toString() != "") {
+            criteria.andStudentnameEqualTo(map.get("name").toString());
+        }
+        return studentListMapper.countByExample(studentListExample);
+    }
+
+    @Override
     public boolean deleteStudent(String id) {
         boolean res = false;
         try {

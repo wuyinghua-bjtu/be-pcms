@@ -13,4 +13,6 @@ public interface TeacherListService {
 
     public boolean deleteTeacher(String id);
 
+    public int getCount(Map map);
+
 }

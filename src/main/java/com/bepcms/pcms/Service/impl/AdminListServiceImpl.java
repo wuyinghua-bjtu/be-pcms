@@ -29,6 +29,19 @@ public class AdminListServiceImpl implements AdminListService {
     }
 
     @Override
+    public int getCount(Map map) {
+        AdminListExample adminListExample = new AdminListExample();
+        AdminListExample.Criteria criteria = adminListExample.createCriteria();
+        if (map.containsKey("id") && map.get("id").toString() != "") {
+            criteria.andAdminidEqualTo(map.get("id").toString());
+        }
+        if (map.containsKey("name") && map.get("name").toString() != "") {
+            criteria.andAdminnameEqualTo(map.get("name").toString());
+        }
+        return adminListMapper.countByExample(adminListExample);
+    }
+
+    @Override
     public boolean deleteAdmin(String id) {
         boolean res = false;
         try {

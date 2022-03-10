@@ -12,4 +12,6 @@ public interface AdminListService {
     public boolean addAdmin(AdminList record);
 
     public boolean deleteAdmin(String id);
+
+    public int getCount(Map map);
 }

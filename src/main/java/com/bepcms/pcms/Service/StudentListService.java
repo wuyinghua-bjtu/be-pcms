@@ -16,4 +16,6 @@ public interface StudentListService {
     public List<StudentList> getStudentListByCondition(Map map);
 
     public boolean deleteStudent(String id);
+
+    public int getCount(Map map);
 }

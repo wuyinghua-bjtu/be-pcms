@@ -31,6 +31,19 @@ public class TeacherListServiceImpl implements TeacherListService {
     }
 
     @Override
+    public int getCount(Map map) {
+        TeacherListExample teacherListExample = new TeacherListExample();
+        TeacherListExample.Criteria criteria = teacherListExample.createCriteria();
+        if (map.containsKey("id") && map.get("id").toString() != "") {
+            criteria.andTeacheridEqualTo(map.get("id").toString());
+        }
+        if (map.containsKey("name") && map.get("name").toString() != "") {
+            criteria.andTeachernameEqualTo(map.get("name").toString());
+        }
+        return teacherListMapper.countByExample(teacherListExample);
+    }
+
+    @Override
     public boolean deleteTeacher(String id) {
         boolean res = false;
         try {

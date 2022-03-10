@@ -13,4 +13,5 @@ public interface CoureseListService {
 
     public boolean deleteCourse(String id);
 
+    public int getCount(Map map);
 }

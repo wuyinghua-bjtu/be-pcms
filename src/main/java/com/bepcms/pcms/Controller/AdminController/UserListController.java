@@ -5,6 +5,7 @@ import com.bepcms.pcms.Service.AdminListService;
 import com.bepcms.pcms.Service.StudentListService;
 import com.bepcms.pcms.Service.TeacherListService;
 import com.bepcms.pcms.model.dto.ResultDto;
+import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -38,21 +39,26 @@ public class UserListController<T> {
         log.info(map.get("type").toString());
         ResultDto res = new ResultDto();
         List<T> lists = null;
+        int total = 0;
+        PageHelper.startPage(Integer.parseInt(map.get("pageNum").toString()), Integer.parseInt(map.get("pageSize").toString()));
         if (map.get("type").toString().equals("student")) {
             log.info("调用查询学生列表接口");
             lists = (List<T>) queryStudentList(map, request, response);
+            total = this.studentListService.getCount(map);
         }
         else if (map.get("type").toString().equals("admin")) {
             lists = (List<T>) queryAdminList(map, request, response);
+            total = this.adminListService.getCount(map);
         }
         else if (map.get("type").toString().equals("teacher")) {
             lists = (List<T>) queryTeacherList(map, request, response);
+            total = this.teacherListService.getCount(map);
         }
         if (lists != null) {
             if (lists.size() > 0) {
                 Map module = new HashMap();
                 module.put("list", lists);
-                module.put("total", lists.size());
+                module.put("total", total);
                 return new ResultDto().ok(module);
             } else {
                 return new ResultDto().error("未查询到用户");

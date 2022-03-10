@@ -19,6 +19,19 @@ public class CourseListServiceImpl implements CoureseListService {
 
 
     @Override
+    public int getCount(Map map) {
+        CourseListExample courseListExample = new CourseListExample();
+        CourseListExample.Criteria criteria = courseListExample.createCriteria();
+        if (map.containsKey("id") && map.get("id").toString() != "") {
+            criteria.andCourseidEqualTo(map.get("id").toString());
+        }
+        if (map.containsKey("name") && map.get("name").toString() != "") {
+            criteria.andCoursenameEqualTo(map.get("name").toString());
+        }
+        return courseListMapper.countByExample(courseListExample);
+    }
+
+    @Override
     public List<CourseList> getCourseListByCondition(Map map) {
         CourseListExample courseListExample = new CourseListExample();
         CourseListExample.Criteria criteria = courseListExample.createCriteria();
