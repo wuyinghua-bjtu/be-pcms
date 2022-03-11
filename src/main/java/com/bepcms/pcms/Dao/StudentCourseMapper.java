@@ -1,5 +1,6 @@
 package com.bepcms.pcms.Dao;
 
+import com.bepcms.pcms.Entity.CourseInfo;
 import com.bepcms.pcms.Entity.CourseList;
 import com.bepcms.pcms.Entity.StudentCourse;
 import com.bepcms.pcms.Entity.StudentCourseExample;
@@ -29,5 +30,5 @@ public interface StudentCourseMapper {
 
     int updateByPrimaryKey(StudentCourse record);
 
-    List<CourseList> getCourseListByStudentid(String id);
+    List<CourseInfo> getCourseListByStudentid(String id);
 }

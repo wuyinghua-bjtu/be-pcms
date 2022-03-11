@@ -208,8 +208,8 @@
       teachername = #{teachername,jdbcType=CHAR}
     where scid = #{scid,jdbcType=INTEGER}
   </update>
-  <select id="getCourseListByStudentid" parameterType="com.bepcms.pcms.Entity.StudentList" resultType="com.bepcms.pcms.Entity.CourseList">
-    select * from course_list
+  <select id="getCourseListByStudentid" resultType="com.bepcms.pcms.Entity.CourseInfo">
+    select * from course_info
     where courseId = any (select courseId from student_course where studentid = #{id,jdbcType=CHAR})
   </select>
 </mapper>

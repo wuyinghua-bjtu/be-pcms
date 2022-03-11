@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bepcms.pcms.Dao.CourseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.bepcms.pcms.Entity.CourseInfo" >
+    <id column="infoId" property="infoid" jdbcType="INTEGER" />
+    <result column="courseId" property="courseid" jdbcType="CHAR" />
+    <result column="courseName" property="coursename" jdbcType="CHAR" />
+    <result column="period" property="period" jdbcType="INTEGER" />
+    <result column="credits" property="credits" jdbcType="INTEGER" />
+    <result column="labPeriod" property="labperiod" jdbcType="INTEGER" />
+    <result column="college" property="college" jdbcType="CHAR" />
+    <result column="teacherId" property="teacherid" jdbcType="CHAR" />
+    <result column="teacherName" property="teachername" jdbcType="CHAR" />
+    <result column="labType" property="labtype" jdbcType="CHAR" />
+    <result column="grade" property="grade" jdbcType="CHAR" />
+    <result column="major" property="major" jdbcType="CHAR" />
+    <result column="isNecessary" property="isnecessary" jdbcType="CHAR" />
+    <result column="labTimes" property="labtimes" jdbcType="INTEGER" />
+    <result column="labNum" property="labnum" jdbcType="INTEGER" />
+    <result column="term" property="term" jdbcType="INTEGER" />
+    <result column="studentNum" property="studentnum" jdbcType="INTEGER" />
+    <result column="groupmateNum" property="groupmatenum" jdbcType="INTEGER" />
+    <result column="laboratoryName" property="laboratoryname" jdbcType="CHAR" />
+    <result column="experimenterNum" property="experimenternum" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    infoId, courseId, courseName, period, credits, labPeriod, college, teacherId, teacherName, 
+    labType, grade, major, isNecessary, labTimes, labNum, term, studentNum, groupmateNum, 
+    laboratoryName, experimenterNum, address
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bepcms.pcms.Entity.CourseInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_info
+    where infoId = #{infoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_info
+    where infoId = #{infoid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bepcms.pcms.Entity.CourseInfoExample" >
+    delete from course_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bepcms.pcms.Entity.CourseInfo" >
+    insert into course_info (infoId, courseId, courseName, 
+      period, credits, labPeriod, 
+      college, teacherId, teacherName, 
+      labType, grade, major, isNecessary, 
+      labTimes, labNum, term, 
+      studentNum, groupmateNum, laboratoryName, 
+      experimenterNum, address)
+    values (#{infoid,jdbcType=INTEGER}, #{courseid,jdbcType=CHAR}, #{coursename,jdbcType=CHAR}, 
+      #{period,jdbcType=INTEGER}, #{credits,jdbcType=INTEGER}, #{labperiod,jdbcType=INTEGER}, 
+      #{college,jdbcType=CHAR}, #{teacherid,jdbcType=CHAR}, #{teachername,jdbcType=CHAR}, 
+      #{labtype,jdbcType=CHAR}, #{grade,jdbcType=CHAR}, #{major,jdbcType=CHAR}, #{isnecessary,jdbcType=CHAR}, 
+      #{labtimes,jdbcType=INTEGER}, #{labnum,jdbcType=INTEGER}, #{term,jdbcType=INTEGER}, 
+      #{studentnum,jdbcType=INTEGER}, #{groupmatenum,jdbcType=INTEGER}, #{laboratoryname,jdbcType=CHAR}, 
+      #{experimenternum,jdbcType=INTEGER}, #{address,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bepcms.pcms.Entity.CourseInfo" >
+    insert into course_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        infoId,
+      </if>
+      <if test="courseid != null" >
+        courseId,
+      </if>
+      <if test="coursename != null" >
+        courseName,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="credits != null" >
+        credits,
+      </if>
+      <if test="labperiod != null" >
+        labPeriod,
+      </if>
+      <if test="college != null" >
+        college,
+      </if>
+      <if test="teacherid != null" >
+        teacherId,
+      </if>
+      <if test="teachername != null" >
+        teacherName,
+      </if>
+      <if test="labtype != null" >
+        labType,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="isnecessary != null" >
+        isNecessary,
+      </if>
+      <if test="labtimes != null" >
+        labTimes,
+      </if>
+      <if test="labnum != null" >
+        labNum,
+      </if>
+      <if test="term != null" >
+        term,
+      </if>
+      <if test="studentnum != null" >
+        studentNum,
+      </if>
+      <if test="groupmatenum != null" >
+        groupmateNum,
+      </if>
+      <if test="laboratoryname != null" >
+        laboratoryName,
+      </if>
+      <if test="experimenternum != null" >
+        experimenterNum,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null" >
+        #{courseid,jdbcType=CHAR},
+      </if>
+      <if test="coursename != null" >
+        #{coursename,jdbcType=CHAR},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=INTEGER},
+      </if>
+      <if test="credits != null" >
+        #{credits,jdbcType=INTEGER},
+      </if>
+      <if test="labperiod != null" >
+        #{labperiod,jdbcType=INTEGER},
+      </if>
+      <if test="college != null" >
+        #{college,jdbcType=CHAR},
+      </if>
+      <if test="teacherid != null" >
+        #{teacherid,jdbcType=CHAR},
+      </if>
+      <if test="teachername != null" >
+        #{teachername,jdbcType=CHAR},
+      </if>
+      <if test="labtype != null" >
+        #{labtype,jdbcType=CHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=CHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=CHAR},
+      </if>
+      <if test="isnecessary != null" >
+        #{isnecessary,jdbcType=CHAR},
+      </if>
+      <if test="labtimes != null" >
+        #{labtimes,jdbcType=INTEGER},
+      </if>
+      <if test="labnum != null" >
+        #{labnum,jdbcType=INTEGER},
+      </if>
+      <if test="term != null" >
+        #{term,jdbcType=INTEGER},
+      </if>
+      <if test="studentnum != null" >
+        #{studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="groupmatenum != null" >
+        #{groupmatenum,jdbcType=INTEGER},
+      </if>
+      <if test="laboratoryname != null" >
+        #{laboratoryname,jdbcType=CHAR},
+      </if>
+      <if test="experimenternum != null" >
+        #{experimenternum,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bepcms.pcms.Entity.CourseInfoExample" resultType="java.lang.Integer" >
+    select count(*) from course_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_info
+    <set >
+      <if test="record.infoid != null" >
+        infoId = #{record.infoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseid != null" >
+        courseId = #{record.courseid,jdbcType=CHAR},
+      </if>
+      <if test="record.coursename != null" >
+        courseName = #{record.coursename,jdbcType=CHAR},
+      </if>
+      <if test="record.period != null" >
+        period = #{record.period,jdbcType=INTEGER},
+      </if>
+      <if test="record.credits != null" >
+        credits = #{record.credits,jdbcType=INTEGER},
+      </if>
+      <if test="record.labperiod != null" >
+        labPeriod = #{record.labperiod,jdbcType=INTEGER},
+      </if>
+      <if test="record.college != null" >
+        college = #{record.college,jdbcType=CHAR},
+      </if>
+      <if test="record.teacherid != null" >
+        teacherId = #{record.teacherid,jdbcType=CHAR},
+      </if>
+      <if test="record.teachername != null" >
+        teacherName = #{record.teachername,jdbcType=CHAR},
+      </if>
+      <if test="record.labtype != null" >
+        labType = #{record.labtype,jdbcType=CHAR},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=CHAR},
+      </if>
+      <if test="record.major != null" >
+        major = #{record.major,jdbcType=CHAR},
+      </if>
+      <if test="record.isnecessary != null" >
+        isNecessary = #{record.isnecessary,jdbcType=CHAR},
+      </if>
+      <if test="record.labtimes != null" >
+        labTimes = #{record.labtimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.labnum != null" >
+        labNum = #{record.labnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.term != null" >
+        term = #{record.term,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentnum != null" >
+        studentNum = #{record.studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupmatenum != null" >
+        groupmateNum = #{record.groupmatenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.laboratoryname != null" >
+        laboratoryName = #{record.laboratoryname,jdbcType=CHAR},
+      </if>
+      <if test="record.experimenternum != null" >
+        experimenterNum = #{record.experimenternum,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_info
+    set infoId = #{record.infoid,jdbcType=INTEGER},
+      courseId = #{record.courseid,jdbcType=CHAR},
+      courseName = #{record.coursename,jdbcType=CHAR},
+      period = #{record.period,jdbcType=INTEGER},
+      credits = #{record.credits,jdbcType=INTEGER},
+      labPeriod = #{record.labperiod,jdbcType=INTEGER},
+      college = #{record.college,jdbcType=CHAR},
+      teacherId = #{record.teacherid,jdbcType=CHAR},
+      teacherName = #{record.teachername,jdbcType=CHAR},
+      labType = #{record.labtype,jdbcType=CHAR},
+      grade = #{record.grade,jdbcType=CHAR},
+      major = #{record.major,jdbcType=CHAR},
+      isNecessary = #{record.isnecessary,jdbcType=CHAR},
+      labTimes = #{record.labtimes,jdbcType=INTEGER},
+      labNum = #{record.labnum,jdbcType=INTEGER},
+      term = #{record.term,jdbcType=INTEGER},
+      studentNum = #{record.studentnum,jdbcType=INTEGER},
+      groupmateNum = #{record.groupmatenum,jdbcType=INTEGER},
+      laboratoryName = #{record.laboratoryname,jdbcType=CHAR},
+      experimenterNum = #{record.experimenternum,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bepcms.pcms.Entity.CourseInfo" >
+    update course_info
+    <set >
+      <if test="courseid != null" >
+        courseId = #{courseid,jdbcType=CHAR},
+      </if>
+      <if test="coursename != null" >
+        courseName = #{coursename,jdbcType=CHAR},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=INTEGER},
+      </if>
+      <if test="credits != null" >
+        credits = #{credits,jdbcType=INTEGER},
+      </if>
+      <if test="labperiod != null" >
+        labPeriod = #{labperiod,jdbcType=INTEGER},
+      </if>
+      <if test="college != null" >
+        college = #{college,jdbcType=CHAR},
+      </if>
+      <if test="teacherid != null" >
+        teacherId = #{teacherid,jdbcType=CHAR},
+      </if>
+      <if test="teachername != null" >
+        teacherName = #{teachername,jdbcType=CHAR},
+      </if>
+      <if test="labtype != null" >
+        labType = #{labtype,jdbcType=CHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=CHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=CHAR},
+      </if>
+      <if test="isnecessary != null" >
+        isNecessary = #{isnecessary,jdbcType=CHAR},
+      </if>
+      <if test="labtimes != null" >
+        labTimes = #{labtimes,jdbcType=INTEGER},
+      </if>
+      <if test="labnum != null" >
+        labNum = #{labnum,jdbcType=INTEGER},
+      </if>
+      <if test="term != null" >
+        term = #{term,jdbcType=INTEGER},
+      </if>
+      <if test="studentnum != null" >
+        studentNum = #{studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="groupmatenum != null" >
+        groupmateNum = #{groupmatenum,jdbcType=INTEGER},
+      </if>
+      <if test="laboratoryname != null" >
+        laboratoryName = #{laboratoryname,jdbcType=CHAR},
+      </if>
+      <if test="experimenternum != null" >
+        experimenterNum = #{experimenternum,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=CHAR},
+      </if>
+    </set>
+    where infoId = #{infoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bepcms.pcms.Entity.CourseInfo" >
+    update course_info
+    set courseId = #{courseid,jdbcType=CHAR},
+      courseName = #{coursename,jdbcType=CHAR},
+      period = #{period,jdbcType=INTEGER},
+      credits = #{credits,jdbcType=INTEGER},
+      labPeriod = #{labperiod,jdbcType=INTEGER},
+      college = #{college,jdbcType=CHAR},
+      teacherId = #{teacherid,jdbcType=CHAR},
+      teacherName = #{teachername,jdbcType=CHAR},
+      labType = #{labtype,jdbcType=CHAR},
+      grade = #{grade,jdbcType=CHAR},
+      major = #{major,jdbcType=CHAR},
+      isNecessary = #{isnecessary,jdbcType=CHAR},
+      labTimes = #{labtimes,jdbcType=INTEGER},
+      labNum = #{labnum,jdbcType=INTEGER},
+      term = #{term,jdbcType=INTEGER},
+      studentNum = #{studentnum,jdbcType=INTEGER},
+      groupmateNum = #{groupmatenum,jdbcType=INTEGER},
+      laboratoryName = #{laboratoryname,jdbcType=CHAR},
+      experimenterNum = #{experimenternum,jdbcType=INTEGER},
+      address = #{address,jdbcType=CHAR}
+    where infoId = #{infoid,jdbcType=INTEGER}
+  </update>
+</mapper>
