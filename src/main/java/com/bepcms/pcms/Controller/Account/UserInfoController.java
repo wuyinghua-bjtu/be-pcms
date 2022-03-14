@@ -18,7 +18,7 @@ public class UserInfoController {
     public ResultDto getUserInfo(HttpServletRequest request, HttpServletResponse response) {
         Map map = new HashMap();
         map.put("username", "吴英华");
-        map.put("userTypeCode", "0");
+        map.put("userTypeCode", "2");
         map.put("userId", "18281220");
         map.put("parentId", "");
         return new ResultDto().ok(map);

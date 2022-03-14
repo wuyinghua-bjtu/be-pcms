@@ -1,16 +1,25 @@
 package com.bepcms.pcms.Entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+
 public class StudentList extends UserList {
+
+    @ExcelProperty(value = "ID", index = 0)
     private String studentid;
 
+    @ExcelProperty(value = "用户名", index = 1)
     private String studentname;
 
+    @ExcelProperty(value = "性别", index = 2)
     private String studentsex;
 
+    @ExcelProperty(value = "年龄", index = 3)
     private Integer studentage;
 
+    @ExcelProperty(value = "学院", index = 4)
     private String college;
 
+    @ExcelProperty(value = "专业", index = 5)
     private String major;
 
     public String getStudentid() {
