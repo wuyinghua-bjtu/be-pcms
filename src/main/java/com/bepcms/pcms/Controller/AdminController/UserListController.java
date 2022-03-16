@@ -42,7 +42,6 @@ public class UserListController<T> {
         int total = 0;
         PageHelper.startPage(Integer.parseInt(map.get("pageNum").toString()), Integer.parseInt(map.get("pageSize").toString()));
         if (map.get("type").toString().equals("student")) {
-            log.info("调用查询学生列表接口");
             lists = (List<T>) queryStudentList(map, request, response);
             total = this.studentListService.getCount(map);
         }

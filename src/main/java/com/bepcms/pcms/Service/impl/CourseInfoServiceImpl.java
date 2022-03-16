@@ -18,6 +18,31 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     private CourseInfoMapper courseInfoMapper;
 
     @Override
+    public int getCount(Map map) {
+        CourseInfoExample courseInfoExample = new CourseInfoExample();
+        CourseInfoExample.Criteria criteria = courseInfoExample.createCriteria();
+        if (map.containsKey("id") && map.get("id").toString() != "") {
+            criteria.andCourseidEqualTo(map.get("id").toString());
+        }
+        if (map.containsKey("name") && map.get("name").toString() != "") {
+            criteria.andCoursenameEqualTo(map.get("name").toString());
+        }
+        return courseInfoMapper.countByExample(courseInfoExample);
+    }
+
+    @Override
+    public boolean addCourse(CourseInfo record) {
+        boolean res = false;
+        try {
+            courseInfoMapper.insertSelective(record);
+            res = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    @Override
     public List<CourseInfo> getCourseInfoByCondition(Map map) {
         CourseInfoExample courseInfoExample = new CourseInfoExample();
         CourseInfoExample.Criteria criteria = courseInfoExample.createCriteria();
@@ -29,4 +54,6 @@ public class CourseInfoServiceImpl implements CourseInfoService {
         }
         return courseInfoMapper.selectByExample(courseInfoExample);
     }
+
+
 }

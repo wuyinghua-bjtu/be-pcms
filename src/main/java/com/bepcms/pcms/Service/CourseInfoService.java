@@ -10,4 +10,8 @@ public interface CourseInfoService {
 
     public List<CourseInfo> getCourseInfoByCondition(Map map);
 
+    public int getCount(Map map);
+
+    public boolean addCourse(CourseInfo record);
+
 }

@@ -1,16 +1,25 @@
 package com.bepcms.pcms.Entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+
 public class CourseList {
+
+    @ExcelProperty(value = "ID", index = 0)
     private String courseid;
 
+    @ExcelProperty(value = "课程名", index = 1)
     private String coursename;
 
+    @ExcelProperty(value = "总学分", index = 2)
     private Integer credits;
 
+    @ExcelProperty(value = "总学时", index = 3)
     private Integer period;
 
+    @ExcelProperty(value = "开课学院", index = 4)
     private String college;
 
+    @ExcelProperty(value = "面向专业", index = 5)
     private String major;
 
     public String getCourseid() {
