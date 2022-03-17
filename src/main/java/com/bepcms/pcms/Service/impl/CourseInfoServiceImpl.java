@@ -21,11 +21,23 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     public int getCount(Map map) {
         CourseInfoExample courseInfoExample = new CourseInfoExample();
         CourseInfoExample.Criteria criteria = courseInfoExample.createCriteria();
-        if (map.containsKey("id") && map.get("id").toString() != "") {
-            criteria.andCourseidEqualTo(map.get("id").toString());
+        if (map.containsKey("courseId") && map.get("courseId").toString() != "") {
+            criteria.andCourseidEqualTo(map.get("courseId").toString());
         }
-        if (map.containsKey("name") && map.get("name").toString() != "") {
-            criteria.andCoursenameEqualTo(map.get("name").toString());
+        if (map.containsKey("courseName") && map.get("courseName").toString() != "") {
+            criteria.andCoursenameEqualTo(map.get("courseName").toString());
+        }
+        if (map.containsKey("teacherId") && map.get("teacherId").toString() != "") {
+            criteria.andTeacheridEqualTo(map.get("teacherId").toString());
+        }
+        if (map.containsKey("teacherName") && map.get("teacherName").toString() != "") {
+            criteria.andTeachernameEqualTo(map.get("teacherName").toString());
+        }
+        if (map.containsKey("college") && map.get("college").toString() != "") {
+            criteria.andCollegeEqualTo(map.get("college").toString());
+        }
+        if (map.containsKey("major") && map.get("major").toString() != "") {
+            criteria.andMajorEqualTo(map.get("major").toString());
         }
         return courseInfoMapper.countByExample(courseInfoExample);
     }
@@ -46,11 +58,23 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     public List<CourseInfo> getCourseInfoByCondition(Map map) {
         CourseInfoExample courseInfoExample = new CourseInfoExample();
         CourseInfoExample.Criteria criteria = courseInfoExample.createCriteria();
-        if (map.containsKey("id") && map.get("id").toString() != "") {
-            criteria.andCourseidEqualTo(map.get("id").toString());
+        if (map.containsKey("courseId") && map.get("courseId").toString() != "") {
+            criteria.andCourseidEqualTo(map.get("courseId").toString());
         }
-        if (map.containsKey("name") && map.get("name").toString() != "") {
-            criteria.andCoursenameEqualTo(map.get("name").toString());
+        if (map.containsKey("courseName") && map.get("courseName").toString() != "") {
+            criteria.andCoursenameEqualTo(map.get("courseName").toString());
+        }
+        if (map.containsKey("teacherId") && map.get("teacherId").toString() != "") {
+            criteria.andTeacheridEqualTo(map.get("teacherId").toString());
+        }
+        if (map.containsKey("teacherName") && map.get("teacherName").toString() != "") {
+            criteria.andTeachernameEqualTo(map.get("teacherName").toString());
+        }
+        if (map.containsKey("college") && map.get("college").toString() != "") {
+            criteria.andCollegeEqualTo(map.get("college").toString());
+        }
+        if (map.containsKey("major") && map.get("major").toString() != "") {
+            criteria.andMajorEqualTo(map.get("major").toString());
         }
         return courseInfoMapper.selectByExample(courseInfoExample);
     }

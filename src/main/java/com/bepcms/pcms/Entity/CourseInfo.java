@@ -1,46 +1,68 @@
 package com.bepcms.pcms.Entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+
 public class CourseInfo {
     private Integer infoid;
 
+    @ExcelProperty(value = "课程号", index = 0)
     private String courseid;
 
+    @ExcelProperty(value = "课程名", index = 1)
     private String coursename;
 
+    @ExcelProperty(value = "总学时", index = 2)
     private Integer period;
 
+    @ExcelProperty(value = "总学分", index = 3)
     private Integer credits;
 
+    @ExcelProperty(value = "实验学时", index = 4)
     private Integer labperiod;
 
+    @ExcelProperty(value = "开课学院", index = 5)
     private String college;
 
+    @ExcelProperty(value = "教师编号", index = 6)
     private String teacherid;
 
+    @ExcelProperty(value = "教师姓名", index = 7)
     private String teachername;
 
+    @ExcelProperty(value = "实验课类型", index = 8)
     private String labtype;
 
+    @ExcelProperty(value = "面向年级", index = 9)
     private String grade;
 
+    @ExcelProperty(value = "面向专业", index = 10)
     private String major;
 
+    @ExcelProperty(value = "实验要求", index = 11)
     private String isnecessary;
 
+    @ExcelProperty(value = "实验次数", index = 12)
     private Integer labtimes;
 
+    @ExcelProperty(value = "实验项目数", index = 13)
     private Integer labnum;
 
+    @ExcelProperty(value = "学期", index = 14)
     private Integer term;
 
+    @ExcelProperty(value = "学生人数", index = 15)
     private Integer studentnum;
 
+    @ExcelProperty(value = "小组人数", index = 16)
     private Integer groupmatenum;
 
+    @ExcelProperty(value = "开课实验室名称", index = 17)
     private String laboratoryname;
 
+    @ExcelProperty(value = "实验员人数", index = 18)
     private Integer experimenternum;
 
+    @ExcelProperty(value = "实验地点", index = 19)
     private String address;
 
     public Integer getInfoid() {
