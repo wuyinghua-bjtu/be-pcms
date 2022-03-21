@@ -41,7 +41,7 @@ public class StudentCourseController {
             module.put("total", this.studentCourceService.getCount(map));
             return new ResultDto().ok(module);
         } else {
-            return new ResultDto().error("未查询到用户");
+            return new ResultDto().error("未查询到用户!");
         }
     }
 
