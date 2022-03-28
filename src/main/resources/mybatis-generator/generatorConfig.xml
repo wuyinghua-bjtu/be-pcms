@@ -48,6 +48,6 @@
 <!--        <table tableName="course_list" domainObjectName="CourseList" />-->
 <!--        <table tableName="student_course" domainObjectName="StudentCourse" />-->
 <!--        <table tableName="teacher_course" domainObjectName="TeacherCourse" />-->
-        <table tableName="course_info" domainObjectName="CourseInfo" />
+        <table tableName="account_info" domainObjectName="AccountInfo" />
     </context>
 </generatorConfiguration>
