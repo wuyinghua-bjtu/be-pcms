@@ -11,7 +11,7 @@ public class LoginParam {
     /**
      * 用户名
      */
-    private String username;
+    private String userId;
 
     /**
      * 密码
@@ -22,5 +22,8 @@ public class LoginParam {
      * 重定向地址
      */
     private String service;
+
+    // 用户类型
+    private String loginType;
 
 }

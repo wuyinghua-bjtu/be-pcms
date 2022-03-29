@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +31,10 @@ public class StudentCourseController {
 
     @PostMapping("/course/resource/get/list")
     @ResponseBody
-    public ResultDto consoleQueryList(@RequestBody Map map) {
+    public ResultDto consoleQueryList(@RequestBody Map map, HttpServletRequest request) {
         List<CourseInfo> courseInfoList = null;
         PageHelper.startPage(Integer.parseInt(map.get("pageNum").toString()), Integer.parseInt(map.get("pageSize").toString()));
-        courseInfoList = this.studentCourceService.getStudentCourceByCondition(map);
+        courseInfoList = this.studentCourceService.getStudentCourceByCondition(map,request);
 //        courseInfoList = this.courseInfoService.getCourseInfoByCondition(map);
         if (courseInfoList != null && courseInfoList.size() > 0) {
             Map module = new HashMap();

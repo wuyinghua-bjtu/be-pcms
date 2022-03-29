@@ -3,12 +3,14 @@ package com.bepcms.pcms.Service.impl;
 import com.bepcms.pcms.Dao.AccountInfoMapper;
 import com.bepcms.pcms.Entity.AccountInfo;
 import com.bepcms.pcms.Service.AccountInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.Map;
 
+@Slf4j
 @Service("AccountInfoService")
 public class AccountInfoServiceImpl implements AccountInfoService {
 
@@ -29,7 +31,6 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         record.setUsertypecode(map.get("userTypeCode").toString());
         record.setLogintime((Date) map.get("loginTime"));
         record.setTotaltime(Integer.parseInt(map.get("totalTime").toString()));
-
         try {
             accountInfoMapper.updateByPrimaryKey(record);
             res = true;

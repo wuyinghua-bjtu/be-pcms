@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -23,14 +25,16 @@ public class StudentCourceServiceImpl implements StudentCourceService {
 
 
     @Override
-    public List<CourseInfo> getStudentCourceByCondition(Map map) {
+    public List<CourseInfo> getStudentCourceByCondition(Map map, HttpServletRequest request) {
 //        StudentCourseExample studentCourseExample = new StudentCourseExample();
 //        StudentCourseExample.Criteria criteria = studentCourseExample.createCriteria();
 //        if (map.containsKey("id") && map.get("id").toString() != "") {
 //            criteria.andStudentidEqualTo(map.get("id").toString());
 //        }
 //        List<StudentCourse> lists = this.studentCourseMapper.selectByExample(studentCourseExample);
-        return this.studentCourseMapper.getCourseListByStudentid(map.get("id").toString());
+        String userId = (String) request.getSession().getAttribute("userId");
+        log.info(userId);
+        return this.studentCourseMapper.getCourseListByStudentid(userId);
     }
 
     @Override
