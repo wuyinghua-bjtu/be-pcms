@@ -34,7 +34,7 @@ public class StudentCourseController {
     public ResultDto consoleQueryList(@RequestBody Map map, HttpServletRequest request) {
         List<CourseInfo> courseInfoList = null;
         PageHelper.startPage(Integer.parseInt(map.get("pageNum").toString()), Integer.parseInt(map.get("pageSize").toString()));
-        courseInfoList = this.studentCourceService.getStudentCourceByCondition(map,request);
+        courseInfoList = this.studentCourceService.getStudentCourceByCondition(map, request);
 //        courseInfoList = this.courseInfoService.getCourseInfoByCondition(map);
         if (courseInfoList != null && courseInfoList.size() > 0) {
             Map module = new HashMap();

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bepcms.pcms.Dao.CourseLabMapper" >
+  <resultMap id="BaseResultMap" type="com.bepcms.pcms.Entity.CourseLab" >
+    <id column="labId" property="labid" jdbcType="INTEGER" />
+    <result column="infoId" property="infoid" jdbcType="INTEGER" />
+    <result column="labName" property="labname" jdbcType="VARCHAR" />
+    <result column="labStyle" property="labstyle" jdbcType="VARCHAR" />
+    <result column="labEnv" property="labenv" jdbcType="VARCHAR" />
+    <result column="hasGroup" property="hasgroup" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="labType" property="labtype" jdbcType="VARCHAR" />
+    <result column="aim" property="aim" jdbcType="VARCHAR" />
+    <result column="principle" property="principle" jdbcType="VARCHAR" />
+    <result column="guide" property="guide" jdbcType="VARCHAR" />
+    <result column="notice" property="notice" jdbcType="VARCHAR" />
+    <result column="hasFile" property="hasfile" jdbcType="BIT" />
+    <result column="fileTag" property="filetag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    labId, infoId, labName, labStyle, labEnv, hasGroup, duration, labType, aim, principle, 
+    guide, notice, hasFile, fileTag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bepcms.pcms.Entity.CourseLabExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_lab
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_lab
+    where labId = #{labid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_lab
+    where labId = #{labid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bepcms.pcms.Entity.CourseLabExample" >
+    delete from course_lab
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bepcms.pcms.Entity.CourseLab" >
+    insert into course_lab (labId, infoId, labName, 
+      labStyle, labEnv, hasGroup, 
+      duration, labType, aim, 
+      principle, guide, notice, 
+      hasFile, fileTag)
+    values (#{labid,jdbcType=INTEGER}, #{infoid,jdbcType=INTEGER}, #{labname,jdbcType=VARCHAR}, 
+      #{labstyle,jdbcType=VARCHAR}, #{labenv,jdbcType=VARCHAR}, #{hasgroup,jdbcType=VARCHAR}, 
+      #{duration,jdbcType=VARCHAR}, #{labtype,jdbcType=VARCHAR}, #{aim,jdbcType=VARCHAR}, 
+      #{principle,jdbcType=VARCHAR}, #{guide,jdbcType=VARCHAR}, #{notice,jdbcType=VARCHAR}, 
+      #{hasfile,jdbcType=BIT}, #{filetag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bepcms.pcms.Entity.CourseLab" >
+    insert into course_lab
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="labid != null" >
+        labId,
+      </if>
+      <if test="infoid != null" >
+        infoId,
+      </if>
+      <if test="labname != null" >
+        labName,
+      </if>
+      <if test="labstyle != null" >
+        labStyle,
+      </if>
+      <if test="labenv != null" >
+        labEnv,
+      </if>
+      <if test="hasgroup != null" >
+        hasGroup,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="labtype != null" >
+        labType,
+      </if>
+      <if test="aim != null" >
+        aim,
+      </if>
+      <if test="principle != null" >
+        principle,
+      </if>
+      <if test="guide != null" >
+        guide,
+      </if>
+      <if test="notice != null" >
+        notice,
+      </if>
+      <if test="hasfile != null" >
+        hasFile,
+      </if>
+      <if test="filetag != null" >
+        fileTag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="labid != null" >
+        #{labid,jdbcType=INTEGER},
+      </if>
+      <if test="infoid != null" >
+        #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="labname != null" >
+        #{labname,jdbcType=VARCHAR},
+      </if>
+      <if test="labstyle != null" >
+        #{labstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="labenv != null" >
+        #{labenv,jdbcType=VARCHAR},
+      </if>
+      <if test="hasgroup != null" >
+        #{hasgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="labtype != null" >
+        #{labtype,jdbcType=VARCHAR},
+      </if>
+      <if test="aim != null" >
+        #{aim,jdbcType=VARCHAR},
+      </if>
+      <if test="principle != null" >
+        #{principle,jdbcType=VARCHAR},
+      </if>
+      <if test="guide != null" >
+        #{guide,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="hasfile != null" >
+        #{hasfile,jdbcType=BIT},
+      </if>
+      <if test="filetag != null" >
+        #{filetag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bepcms.pcms.Entity.CourseLabExample" resultType="java.lang.Integer" >
+    select count(*) from course_lab
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_lab
+    <set >
+      <if test="record.labid != null" >
+        labId = #{record.labid,jdbcType=INTEGER},
+      </if>
+      <if test="record.infoid != null" >
+        infoId = #{record.infoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.labname != null" >
+        labName = #{record.labname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.labstyle != null" >
+        labStyle = #{record.labstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.labenv != null" >
+        labEnv = #{record.labenv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasgroup != null" >
+        hasGroup = #{record.hasgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duration != null" >
+        duration = #{record.duration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.labtype != null" >
+        labType = #{record.labtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aim != null" >
+        aim = #{record.aim,jdbcType=VARCHAR},
+      </if>
+      <if test="record.principle != null" >
+        principle = #{record.principle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guide != null" >
+        guide = #{record.guide,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notice != null" >
+        notice = #{record.notice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasfile != null" >
+        hasFile = #{record.hasfile,jdbcType=BIT},
+      </if>
+      <if test="record.filetag != null" >
+        fileTag = #{record.filetag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_lab
+    set labId = #{record.labid,jdbcType=INTEGER},
+      infoId = #{record.infoid,jdbcType=INTEGER},
+      labName = #{record.labname,jdbcType=VARCHAR},
+      labStyle = #{record.labstyle,jdbcType=VARCHAR},
+      labEnv = #{record.labenv,jdbcType=VARCHAR},
+      hasGroup = #{record.hasgroup,jdbcType=VARCHAR},
+      duration = #{record.duration,jdbcType=VARCHAR},
+      labType = #{record.labtype,jdbcType=VARCHAR},
+      aim = #{record.aim,jdbcType=VARCHAR},
+      principle = #{record.principle,jdbcType=VARCHAR},
+      guide = #{record.guide,jdbcType=VARCHAR},
+      notice = #{record.notice,jdbcType=VARCHAR},
+      hasFile = #{record.hasfile,jdbcType=BIT},
+      fileTag = #{record.filetag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bepcms.pcms.Entity.CourseLab" >
+    update course_lab
+    <set >
+      <if test="infoid != null" >
+        infoId = #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="labname != null" >
+        labName = #{labname,jdbcType=VARCHAR},
+      </if>
+      <if test="labstyle != null" >
+        labStyle = #{labstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="labenv != null" >
+        labEnv = #{labenv,jdbcType=VARCHAR},
+      </if>
+      <if test="hasgroup != null" >
+        hasGroup = #{hasgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="labtype != null" >
+        labType = #{labtype,jdbcType=VARCHAR},
+      </if>
+      <if test="aim != null" >
+        aim = #{aim,jdbcType=VARCHAR},
+      </if>
+      <if test="principle != null" >
+        principle = #{principle,jdbcType=VARCHAR},
+      </if>
+      <if test="guide != null" >
+        guide = #{guide,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        notice = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="hasfile != null" >
+        hasFile = #{hasfile,jdbcType=BIT},
+      </if>
+      <if test="filetag != null" >
+        fileTag = #{filetag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where labId = #{labid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bepcms.pcms.Entity.CourseLab" >
+    update course_lab
+    set infoId = #{infoid,jdbcType=INTEGER},
+      labName = #{labname,jdbcType=VARCHAR},
+      labStyle = #{labstyle,jdbcType=VARCHAR},
+      labEnv = #{labenv,jdbcType=VARCHAR},
+      hasGroup = #{hasgroup,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      labType = #{labtype,jdbcType=VARCHAR},
+      aim = #{aim,jdbcType=VARCHAR},
+      principle = #{principle,jdbcType=VARCHAR},
+      guide = #{guide,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR},
+      hasFile = #{hasfile,jdbcType=BIT},
+      fileTag = #{filetag,jdbcType=VARCHAR}
+    where labId = #{labid,jdbcType=INTEGER}
+  </update>
+</mapper>
