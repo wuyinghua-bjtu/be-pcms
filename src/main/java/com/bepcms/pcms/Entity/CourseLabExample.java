@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseLabExample {
-    public static CourseLabExample.Criteria Criteria;
     protected String orderByClause;
 
     protected boolean distinct;
@@ -505,73 +504,63 @@ public class CourseLabExample {
             return (Criteria) this;
         }
 
-        public Criteria andDurationIsNull() {
-            addCriterion("duration is null");
+        public Criteria andGroupmatenumIsNull() {
+            addCriterion("groupmateNum is null");
             return (Criteria) this;
         }
 
-        public Criteria andDurationIsNotNull() {
-            addCriterion("duration is not null");
+        public Criteria andGroupmatenumIsNotNull() {
+            addCriterion("groupmateNum is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDurationEqualTo(String value) {
-            addCriterion("duration =", value, "duration");
+        public Criteria andGroupmatenumEqualTo(Integer value) {
+            addCriterion("groupmateNum =", value, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationNotEqualTo(String value) {
-            addCriterion("duration <>", value, "duration");
+        public Criteria andGroupmatenumNotEqualTo(Integer value) {
+            addCriterion("groupmateNum <>", value, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationGreaterThan(String value) {
-            addCriterion("duration >", value, "duration");
+        public Criteria andGroupmatenumGreaterThan(Integer value) {
+            addCriterion("groupmateNum >", value, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationGreaterThanOrEqualTo(String value) {
-            addCriterion("duration >=", value, "duration");
+        public Criteria andGroupmatenumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("groupmateNum >=", value, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationLessThan(String value) {
-            addCriterion("duration <", value, "duration");
+        public Criteria andGroupmatenumLessThan(Integer value) {
+            addCriterion("groupmateNum <", value, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationLessThanOrEqualTo(String value) {
-            addCriterion("duration <=", value, "duration");
+        public Criteria andGroupmatenumLessThanOrEqualTo(Integer value) {
+            addCriterion("groupmateNum <=", value, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationLike(String value) {
-            addCriterion("duration like", value, "duration");
+        public Criteria andGroupmatenumIn(List<Integer> values) {
+            addCriterion("groupmateNum in", values, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationNotLike(String value) {
-            addCriterion("duration not like", value, "duration");
+        public Criteria andGroupmatenumNotIn(List<Integer> values) {
+            addCriterion("groupmateNum not in", values, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationIn(List<String> values) {
-            addCriterion("duration in", values, "duration");
+        public Criteria andGroupmatenumBetween(Integer value1, Integer value2) {
+            addCriterion("groupmateNum between", value1, value2, "groupmatenum");
             return (Criteria) this;
         }
 
-        public Criteria andDurationNotIn(List<String> values) {
-            addCriterion("duration not in", values, "duration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDurationBetween(String value1, String value2) {
-            addCriterion("duration between", value1, value2, "duration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDurationNotBetween(String value1, String value2) {
-            addCriterion("duration not between", value1, value2, "duration");
+        public Criteria andGroupmatenumNotBetween(Integer value1, Integer value2) {
+            addCriterion("groupmateNum not between", value1, value2, "groupmatenum");
             return (Criteria) this;
         }
 
@@ -1052,6 +1041,76 @@ public class CourseLabExample {
 
         public Criteria andFiletagNotBetween(String value1, String value2) {
             addCriterion("fileTag not between", value1, value2, "filetag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationIsNull() {
+            addCriterion("duration is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationIsNotNull() {
+            addCriterion("duration is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationEqualTo(String value) {
+            addCriterion("duration =", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationNotEqualTo(String value) {
+            addCriterion("duration <>", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationGreaterThan(String value) {
+            addCriterion("duration >", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationGreaterThanOrEqualTo(String value) {
+            addCriterion("duration >=", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationLessThan(String value) {
+            addCriterion("duration <", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationLessThanOrEqualTo(String value) {
+            addCriterion("duration <=", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationLike(String value) {
+            addCriterion("duration like", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationNotLike(String value) {
+            addCriterion("duration not like", value, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationIn(List<String> values) {
+            addCriterion("duration in", values, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationNotIn(List<String> values) {
+            addCriterion("duration not in", values, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationBetween(String value1, String value2) {
+            addCriterion("duration between", value1, value2, "duration");
+            return (Criteria) this;
+        }
+
+        public Criteria andDurationNotBetween(String value1, String value2) {
+            addCriterion("duration not between", value1, value2, "duration");
             return (Criteria) this;
         }
     }

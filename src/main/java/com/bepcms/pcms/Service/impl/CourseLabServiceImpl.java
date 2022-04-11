@@ -16,8 +16,8 @@ public class CourseLabServiceImpl implements CourseLabService {
     public int getCount(Map map) {
         CourseLabExample courseLabExample = new CourseLabExample();
         CourseLabExample.Criteria criteria = courseLabExample.createCriteria();
-        if (map.containsKey("courseId") && map.get("courseId").toString() != "") {
-            criteria.andInfoidEqualTo(Integer.parseInt(map.get("courseId").toString()));
+        if (map.containsKey("infoId") && map.get("infoId").toString() != "") {
+            criteria.andInfoidEqualTo(Integer.parseInt(map.get("infoId").toString()));
         }
         return courseLabMapper.countByExample(courseLabExample);
     }

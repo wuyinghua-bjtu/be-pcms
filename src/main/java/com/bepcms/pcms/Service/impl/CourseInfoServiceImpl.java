@@ -21,6 +21,9 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     public int getCount(Map map) {
         CourseInfoExample courseInfoExample = new CourseInfoExample();
         CourseInfoExample.Criteria criteria = courseInfoExample.createCriteria();
+        if (map.containsKey("infoId") && map.get("infoId").toString() != "") {
+            criteria.andCourseidEqualTo(map.get("infoId").toString());
+        }
         if (map.containsKey("courseId") && map.get("courseId").toString() != "") {
             criteria.andCourseidEqualTo(map.get("courseId").toString());
         }

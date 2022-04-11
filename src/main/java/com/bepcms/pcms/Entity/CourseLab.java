@@ -13,7 +13,7 @@ public class CourseLab {
 
     private String hasgroup;
 
-    private String duration;
+    private Integer groupmatenum;
 
     private String labtype;
 
@@ -28,6 +28,8 @@ public class CourseLab {
     private Boolean hasfile;
 
     private String filetag;
+
+    private String duration;
 
     public Integer getLabid() {
         return labid;
@@ -77,12 +79,12 @@ public class CourseLab {
         this.hasgroup = hasgroup == null ? null : hasgroup.trim();
     }
 
-    public String getDuration() {
-        return duration;
+    public Integer getGroupmatenum() {
+        return groupmatenum;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration == null ? null : duration.trim();
+    public void setGroupmatenum(Integer groupmatenum) {
+        this.groupmatenum = groupmatenum;
     }
 
     public String getLabtype() {
@@ -139,5 +141,13 @@ public class CourseLab {
 
     public void setFiletag(String filetag) {
         this.filetag = filetag == null ? null : filetag.trim();
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration == null ? null : duration.trim();
     }
 }

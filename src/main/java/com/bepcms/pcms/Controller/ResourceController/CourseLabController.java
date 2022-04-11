@@ -60,6 +60,8 @@ public class CourseLabController {
         record.setLabname(map.get("labName").toString());
         record.setLabstyle(map.get("labStyle").toString());
         record.setLabenv(map.get("labEnv").toString());
+        record.setHasgroup(map.get("hasGroup").toString());
+        record.setGroupmatenum(Integer.parseInt(map.get("groupmateNum").toString()));
         record.setHasgroup(map.get("duration").toString());
         record.setLabtype(map.get("labType").toString());
         record.setAim(map.get("aim").toString());
